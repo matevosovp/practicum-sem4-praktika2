@@ -1,0 +1,542 @@
+{
+  "generated_at_utc": "2026-04-17T22:46:47.387031+00:00",
+  "config": {
+    "top_k": 10,
+    "validation_days": 14,
+    "max_user_history": 20,
+    "max_neighbors": 80,
+    "min_pair_score": 1.0,
+    "target_events": [
+      "addtocart",
+      "transaction"
+    ],
+    "purchased_event": "transaction"
+  },
+  "split_summary": {
+    "train_rows": 2509138,
+    "validation_rows": 246963,
+    "cutoff_timestamp": 1441335587788,
+    "train_start": "2015-05-03T03:00:04.384000",
+    "train_end": "2015-09-04T02:59:46.763000",
+    "validation_start": "2015-09-04T02:59:55.643000",
+    "validation_end": "2015-09-18T02:59:47.788000",
+    "cutoff_datetime": "2015-09-04T02:59:47.788000"
+  },
+  "evaluation_dataset": {
+    "users": 509,
+    "avg_history_events": 64.46,
+    "median_history_events": 3.0,
+    "avg_target_items": 2.54,
+    "share_with_repeat_target_from_history": 0.1886,
+    "share_with_full_target_in_history": 0.1257
+  },
+  "history_bucket_distribution": [
+    {
+      "history_bucket": "1",
+      "count": 167,
+      "share": 0.3281
+    },
+    {
+      "history_bucket": "2-4",
+      "count": 129,
+      "share": 0.2534
+    },
+    {
+      "history_bucket": "5-9",
+      "count": 72,
+      "share": 0.1415
+    },
+    {
+      "history_bucket": "10-19",
+      "count": 50,
+      "share": 0.0982
+    },
+    {
+      "history_bucket": "20+",
+      "count": 91,
+      "share": 0.1788
+    }
+  ],
+  "model_definitions": [
+    {
+      "model_name": "global_popularity",
+      "family": "non-personalized baseline",
+      "why_included": "нижняя граница качества и обязательный cold-start fallback"
+    },
+    {
+      "model_name": "history_baseline",
+      "family": "repeat-interest baseline",
+      "why_included": "проверка гипотезы о силе короткой персональной истории в разреженном e-commerce"
+    },
+    {
+      "model_name": "weighted_item2item",
+      "family": "co-occurrence retrieval",
+      "why_included": "поиск новых, но похожих товаров без dense user-item матрицы"
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "family": "history + retrieval",
+      "why_included": "компромисс между повторным интересом и каталоговым расширением"
+    }
+  ],
+  "metrics_table": [
+    {
+      "model_name": "global_popularity",
+      "recall_at_k": 0.008520922774877898,
+      "hit_rate_at_k": 0.021611001964636542,
+      "ndcg_at_k": 0.00913194629384495,
+      "catalog_coverage": 15,
+      "catalog_coverage_pct": 0.006
+    },
+    {
+      "model_name": "history_baseline",
+      "recall_at_k": 0.14957517924119101,
+      "hit_rate_at_k": 0.1905697445972495,
+      "ndcg_at_k": 0.13202929995907542,
+      "catalog_coverage": 1794,
+      "catalog_coverage_pct": 0.763
+    },
+    {
+      "model_name": "weighted_item2item",
+      "recall_at_k": 0.08283211004232614,
+      "hit_rate_at_k": 0.11198428290766209,
+      "ndcg_at_k": 0.0467778637597536,
+      "catalog_coverage": 3310,
+      "catalog_coverage_pct": 1.408
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "recall_at_k": 0.13773278675046846,
+      "hit_rate_at_k": 0.17288801571709234,
+      "ndcg_at_k": 0.08379555668741834,
+      "catalog_coverage": 3456,
+      "catalog_coverage_pct": 1.47
+    }
+  ],
+  "history_bucket_metrics": [
+    {
+      "model_name": "global_popularity",
+      "history_bucket": "1",
+      "users": 167,
+      "recall_at_k": 0.006,
+      "hit_rate_at_k": 0.006,
+      "ndcg_at_k": 0.0021
+    },
+    {
+      "model_name": "global_popularity",
+      "history_bucket": "2-4",
+      "users": 129,
+      "recall_at_k": 0.0097,
+      "hit_rate_at_k": 0.0155,
+      "ndcg_at_k": 0.0108
+    },
+    {
+      "model_name": "global_popularity",
+      "history_bucket": "5-9",
+      "users": 72,
+      "recall_at_k": 0.0208,
+      "hit_rate_at_k": 0.0278,
+      "ndcg_at_k": 0.0224
+    },
+    {
+      "model_name": "global_popularity",
+      "history_bucket": "10-19",
+      "users": 50,
+      "recall_at_k": 0.0,
+      "hit_rate_at_k": 0.0,
+      "ndcg_at_k": 0.0
+    },
+    {
+      "model_name": "global_popularity",
+      "history_bucket": "20+",
+      "users": 91,
+      "recall_at_k": 0.0065,
+      "hit_rate_at_k": 0.0659,
+      "ndcg_at_k": 0.0142
+    },
+    {
+      "model_name": "history_baseline",
+      "history_bucket": "1",
+      "users": 167,
+      "recall_at_k": 0.1128,
+      "hit_rate_at_k": 0.1198,
+      "ndcg_at_k": 0.1103
+    },
+    {
+      "model_name": "history_baseline",
+      "history_bucket": "2-4",
+      "users": 129,
+      "recall_at_k": 0.1589,
+      "hit_rate_at_k": 0.1783,
+      "ndcg_at_k": 0.1481
+    },
+    {
+      "model_name": "history_baseline",
+      "history_bucket": "5-9",
+      "users": 72,
+      "recall_at_k": 0.1868,
+      "hit_rate_at_k": 0.2361,
+      "ndcg_at_k": 0.1711
+    },
+    {
+      "model_name": "history_baseline",
+      "history_bucket": "10-19",
+      "users": 50,
+      "recall_at_k": 0.2406,
+      "hit_rate_at_k": 0.32,
+      "ndcg_at_k": 0.1524
+    },
+    {
+      "model_name": "history_baseline",
+      "history_bucket": "20+",
+      "users": 91,
+      "recall_at_k": 0.1244,
+      "hit_rate_at_k": 0.2308,
+      "ndcg_at_k": 0.1071
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "history_bucket": "1",
+      "users": 167,
+      "recall_at_k": 0.1277,
+      "hit_rate_at_k": 0.1377,
+      "ndcg_at_k": 0.0872
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "history_bucket": "2-4",
+      "users": 129,
+      "recall_at_k": 0.1647,
+      "hit_rate_at_k": 0.186,
+      "ndcg_at_k": 0.0897
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "history_bucket": "5-9",
+      "users": 72,
+      "recall_at_k": 0.1486,
+      "hit_rate_at_k": 0.1806,
+      "ndcg_at_k": 0.0881
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "history_bucket": "10-19",
+      "users": 50,
+      "recall_at_k": 0.1772,
+      "hit_rate_at_k": 0.24,
+      "ndcg_at_k": 0.1054
+    },
+    {
+      "model_name": "hybrid_history_item2item",
+      "history_bucket": "20+",
+      "users": 91,
+      "recall_at_k": 0.0875,
+      "hit_rate_at_k": 0.1758,
+      "ndcg_at_k": 0.0539
+    },
+    {
+      "model_name": "weighted_item2item",
+      "history_bucket": "1",
+      "users": 167,
+      "recall_at_k": 0.0389,
+      "hit_rate_at_k": 0.0419,
+      "ndcg_at_k": 0.0215
+    },
+    {
+      "model_name": "weighted_item2item",
+      "history_bucket": "2-4",
+      "users": 129,
+      "recall_at_k": 0.0756,
+      "hit_rate_at_k": 0.093,
+      "ndcg_at_k": 0.0475
+    },
+    {
+      "model_name": "weighted_item2item",
+      "history_bucket": "5-9",
+      "users": 72,
+      "recall_at_k": 0.1347,
+      "hit_rate_at_k": 0.1667,
+      "ndcg_at_k": 0.0702
+    },
+    {
+      "model_name": "weighted_item2item",
+      "history_bucket": "10-19",
+      "users": 50,
+      "recall_at_k": 0.1772,
+      "hit_rate_at_k": 0.24,
+      "ndcg_at_k": 0.0887
+    },
+    {
+      "model_name": "weighted_item2item",
+      "history_bucket": "20+",
+      "users": 91,
+      "recall_at_k": 0.0808,
+      "hit_rate_at_k": 0.1538,
+      "ndcg_at_k": 0.0506
+    }
+  ],
+  "serving_profile_eligibility": {
+    "train_users_total": 1280329,
+    "train_users_with_2plus_items": 260764,
+    "train_users_with_2plus_items_share": 0.2037,
+    "eval_users_with_2plus_items": 307,
+    "eval_users_with_2plus_items_share": 0.6031
+  },
+  "sample_cases": [
+    {
+      "case_label": "repeat_short_history_hit",
+      "user_id": 8605,
+      "history_events": 1,
+      "history_items": [
+        386324
+      ],
+      "actual": [
+        386324
+      ],
+      "history_baseline": [
+        386324,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512,
+        312728,
+        370653
+      ],
+      "weighted_item2item": [
+        206305,
+        415818,
+        419470,
+        24693,
+        314397,
+        370223,
+        355281,
+        128745,
+        302274,
+        83752
+      ],
+      "hybrid_history_item2item": [
+        206305,
+        415818,
+        419470,
+        24693,
+        314397,
+        370223,
+        386324,
+        355281,
+        128745,
+        302274
+      ],
+      "history_recall_at_k": 1.0,
+      "weighted_recall_at_k": 0.0,
+      "hybrid_recall_at_k": 1.0
+    },
+    {
+      "case_label": "repeat_medium_history_hit",
+      "user_id": 29744,
+      "history_events": 7,
+      "history_items": [
+        79056,
+        264689,
+        170943
+      ],
+      "actual": [
+        79056,
+        264689
+      ],
+      "history_baseline": [
+        79056,
+        264689,
+        170943,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512
+      ],
+      "weighted_item2item": [
+        124055,
+        159042,
+        382875,
+        170943,
+        264689,
+        79056,
+        450950,
+        239193,
+        335193,
+        15379
+      ],
+      "hybrid_history_item2item": [
+        124055,
+        159042,
+        382875,
+        170943,
+        264689,
+        79056,
+        450950,
+        239193,
+        335193,
+        15379
+      ],
+      "history_recall_at_k": 1.0,
+      "weighted_recall_at_k": 1.0,
+      "hybrid_recall_at_k": 1.0
+    },
+    {
+      "case_label": "item2item_recovers_new_item",
+      "user_id": 35520,
+      "history_events": 1,
+      "history_items": [
+        303978
+      ],
+      "actual": [
+        436412
+      ],
+      "history_baseline": [
+        303978,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512,
+        312728,
+        370653
+      ],
+      "weighted_item2item": [
+        159792,
+        55264,
+        430102,
+        78296,
+        197561,
+        436412,
+        461686,
+        187946,
+        5411,
+        257040
+      ],
+      "hybrid_history_item2item": [
+        159792,
+        303978,
+        55264,
+        430102,
+        78296,
+        197561,
+        436412,
+        461686,
+        187946,
+        5411
+      ],
+      "history_recall_at_k": 0.0,
+      "weighted_recall_at_k": 1.0,
+      "hybrid_recall_at_k": 1.0
+    },
+    {
+      "case_label": "history_beats_hybrid_on_repeat_interest",
+      "user_id": 856600,
+      "history_events": 1,
+      "history_items": [
+        450760
+      ],
+      "actual": [
+        450760
+      ],
+      "history_baseline": [
+        450760,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512,
+        312728,
+        370653
+      ],
+      "weighted_item2item": [
+        166553,
+        130981,
+        37976,
+        282672,
+        441653,
+        111792,
+        265566,
+        80174,
+        438404,
+        227777
+      ],
+      "hybrid_history_item2item": [
+        166553,
+        130981,
+        37976,
+        282672,
+        441653,
+        111792,
+        265566,
+        80174,
+        438404,
+        227777
+      ],
+      "history_recall_at_k": 1.0,
+      "weighted_recall_at_k": 0.0,
+      "hybrid_recall_at_k": 0.0
+    },
+    {
+      "case_label": "difficult_multi_target_miss",
+      "user_id": 675843,
+      "history_events": 1,
+      "history_items": [
+        405507
+      ],
+      "actual": [
+        35221,
+        140201,
+        304979
+      ],
+      "history_baseline": [
+        405507,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512,
+        312728,
+        370653
+      ],
+      "weighted_item2item": [
+        244179,
+        228598,
+        368575,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943,
+        219512
+      ],
+      "hybrid_history_item2item": [
+        405507,
+        244179,
+        228598,
+        368575,
+        461686,
+        187946,
+        5411,
+        257040,
+        309778,
+        7943
+      ],
+      "history_recall_at_k": 0.0,
+      "weighted_recall_at_k": 0.0,
+      "hybrid_recall_at_k": 0.0
+    }
+  ]
+}

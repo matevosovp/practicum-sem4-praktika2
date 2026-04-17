@@ -1,0 +1,11 @@
+{
+  "run_id": "airflow-etl",
+  "transformed_at_utc": "2026-04-17T18:40:06.509954+00:00",
+  "validation_days": 14,
+  "events_prepared_rows": 2756101,
+  "train_events_rows": 2509138,
+  "validation_events_rows": 246963,
+  "aggregated_train_rows": 1950423,
+  "item_snapshot_rows": 417053,
+  "evaluation_frame_rows": 509
+}

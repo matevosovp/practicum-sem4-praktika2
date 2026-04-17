@@ -1,0 +1,35 @@
+{
+  "best_model_name": "history_baseline",
+  "all_metrics": {
+    "global_popularity": {
+      "recall_at_k": 0.008520922774877898,
+      "hit_rate_at_k": 0.021611001964636542,
+      "ndcg_at_k": 0.00913194629384495,
+      "evaluated_users": 509.0,
+      "catalog_coverage": 15.0
+    },
+    "history_baseline": {
+      "recall_at_k": 0.14957517924119101,
+      "hit_rate_at_k": 0.1905697445972495,
+      "ndcg_at_k": 0.13202929995907542,
+      "evaluated_users": 509.0,
+      "catalog_coverage": 1794.0
+    },
+    "weighted_item2item": {
+      "recall_at_k": 0.08283211004232614,
+      "hit_rate_at_k": 0.11198428290766209,
+      "ndcg_at_k": 0.0467778637597536,
+      "evaluated_users": 509.0,
+      "catalog_coverage": 3310.0
+    },
+    "hybrid_history_item2item": {
+      "recall_at_k": 0.13773278675046846,
+      "hit_rate_at_k": 0.17288801571709234,
+      "ndcg_at_k": 0.08379555668741834,
+      "evaluated_users": 509.0,
+      "catalog_coverage": 3456.0
+    }
+  },
+  "cutoff_timestamp": 1441335587788,
+  "top_k": 10
+}
