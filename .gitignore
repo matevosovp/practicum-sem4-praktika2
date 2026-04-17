@@ -1,0 +1,14 @@
+.venv*
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.codex
+artifacts/
+mlruns/
+*.csv
+task.md
+eda_summary.json
+.env
+.code*
+mlruns/
+__pycache__

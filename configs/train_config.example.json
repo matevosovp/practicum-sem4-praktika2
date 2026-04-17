@@ -1,0 +1,7 @@
+{
+  "top_k": 10,
+  "validation_days": 14,
+  "max_user_history": 20,
+  "max_neighbors": 80,
+  "min_pair_score": 1.0
+}
