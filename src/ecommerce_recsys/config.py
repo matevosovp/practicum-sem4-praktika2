@@ -42,3 +42,22 @@ class TrainingConfig:
     event_weights: EventWeights = field(default_factory=EventWeights)
     split: SplitConfig = field(default_factory=SplitConfig)
 
+
+@dataclass(slots=True)
+class DatabaseConfig:
+    host: str
+    port: int
+    database: str
+    user: str
+    password: str
+    sslmode: str = "require"
+
+
+@dataclass(slots=True)
+class ETLConfig:
+    data_dir: Path = Path(".")
+    artifacts_dir: Path = Path("artifacts")
+    validation_days: int = 14
+    staging_schema: str = "recsys_staging"
+    mart_schema: str = "recsys_mart"
+    run_id: str = "manual"

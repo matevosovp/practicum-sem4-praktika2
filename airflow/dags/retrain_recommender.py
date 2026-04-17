@@ -10,8 +10,9 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator
 
 
-ROOT = Path(os.getenv("RECSYS_PROJECT_ROOT", Path(__file__).resolve().parents[2]))
+ROOT = Path(os.getenv("RECSYS_PROJECT_ROOT", Path(__file__).resolve().parents[1]))
 PYTHON_BIN = os.getenv("RECSYS_PYTHON_BIN", sys.executable)
+CONN_ID = os.getenv("RECSYS_AIRFLOW_CONN_ID", "recsys_postgres")
 
 
 def run_command(command: list[str]) -> None:
@@ -40,8 +41,20 @@ def train_model() -> None:
     )
 
 
-def rebuild_notebooks() -> None:
-    run_command([PYTHON_BIN, "scripts/build_notebooks.py"])
+def export_reporting_metrics() -> None:
+    run_command(
+        [
+            PYTHON_BIN,
+            "scripts/export_reporting_metrics.py",
+            "--run-id",
+            "airflow-retrain",
+            "--mart-schema",
+            os.getenv("RECSYS_MART_SCHEMA", "recsys_mart"),
+            "--persist-db",
+            "--conn-id",
+            CONN_ID,
+        ]
+    )
 
 
 with DAG(
@@ -53,6 +66,6 @@ with DAG(
 ) as dag:
     prepare_task = PythonOperator(task_id="prepare_runtime_dirs", python_callable=prepare_runtime_dirs)
     train_task = PythonOperator(task_id="train_model", python_callable=train_model)
-    notebooks_task = PythonOperator(task_id="rebuild_notebooks", python_callable=rebuild_notebooks)
+    reporting_task = PythonOperator(task_id="export_reporting_metrics", python_callable=export_reporting_metrics)
 
-    prepare_task >> train_task >> notebooks_task
+    prepare_task >> train_task >> reporting_task

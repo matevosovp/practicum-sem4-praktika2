@@ -12,3 +12,8 @@ eda_summary.json
 .code*
 mlruns/
 __pycache__
+*.log
+
+*.cfg
+*.db
+*.pid

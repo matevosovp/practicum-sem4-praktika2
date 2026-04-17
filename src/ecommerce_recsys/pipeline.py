@@ -27,6 +27,7 @@ def prepare_training_frames(config: TrainingConfig) -> dict[str, pd.DataFrame]:
         ]
     )
 
+    save_parquet(events, config.artifacts_dir / "data" / "events_prepared.parquet")
     save_parquet(split.train_events, config.artifacts_dir / "data" / "train_events.parquet")
     save_parquet(split.validation_events, config.artifacts_dir / "data" / "validation_events.parquet")
     save_parquet(aggregated_train, config.artifacts_dir / "data" / "aggregated_train.parquet")
