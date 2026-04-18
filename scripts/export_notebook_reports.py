@@ -141,7 +141,7 @@ def build_eda_report() -> dict[str, object]:
         },
         "monthly_events": monthly_events.to_dict(orient="records"),
         "event_share_pct": [
-            {"event": event_name, "share_pct": float(round(share * 100, 2))}
+            {"event": event_name, "share_pct": float(round(share, 2))}
             for event_name, share in summary["event_shares_pct"].items()
         ],
         "funnel_user_item_pairs": [

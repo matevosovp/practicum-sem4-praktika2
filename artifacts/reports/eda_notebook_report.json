@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-17T22:46:35.384001+00:00",
+  "generated_at_utc": "2026-04-17T23:14:10.812170+00:00",
   "etl_summary": {
     "run_id": "airflow-etl",
     "transformed_at_utc": "2026-04-17T18:40:06.509954+00:00",
@@ -71,15 +71,15 @@
   "event_share_pct": [
     {
       "event": "view",
-      "share_pct": 9667.0
+      "share_pct": 96.67
     },
     {
       "event": "addtocart",
-      "share_pct": 252.0
+      "share_pct": 2.52
     },
     {
       "event": "transaction",
-      "share_pct": 81.0
+      "share_pct": 0.81
     }
   ],
   "funnel_user_item_pairs": [
