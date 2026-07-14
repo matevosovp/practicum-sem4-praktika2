@@ -1,11 +1,11 @@
 # Monitoring
 
-Документ описывает минимально разумный monitoring-контур для текущего FastAPI-сервиса. Он разделен на два слоя:
+Документ описывает минимально разумный monitoring-контур для текущего FastAPI-сервиса. Он разделён на два слоя:
 
 - online health: доступность, latency и fallback-поведение API
 - offline quality control: метрики моделей, артефакты retrain-контура и признаки деградации recommendation quality
 
-## Что отдает сервис
+## Что отдаёт сервис
 
 Prometheus-compatible метрики доступны на `GET /metrics`.
 
@@ -78,11 +78,11 @@ sum(rate(recsys_api_requests_total{endpoint="/recommendations",status=~"2.."}[5m
 
 Сервис не меряет online recommendation quality напрямую, поэтому quality drift собирается из косвенных признаков:
 
-- fallback share растет относительно базового уровня
+- fallback share растёт относительно базового уровня
 - после retrain ухудшается `Recall@10` или `NDCG@10` в `artifacts/reports/evaluation_summary.json`
 - MLflow показывает последовательное падение offline quality между запусками
 - свежий retrain резко увеличивает catalog coverage при заметном падении recall: это сигнал не улучшения discovery, а вероятного размытия релевантности
-- новый model artifact перестает обновляться по расписанию Airflow DAG
+- новый model artifact перестаёт обновляться по расписанию Airflow DAG
 
 Для этого проекта особенно важно следить за двумя сценариями:
 
@@ -93,8 +93,8 @@ sum(rate(recsys_api_requests_total{endpoint="/recommendations",status=~"2.."}[5m
 
 Ключевые точки контроля качества находятся вне online path:
 
-- [artifacts/reports/evaluation_summary.json](/home/what/praktika/practicum-sem4-praktika2/artifacts/reports/evaluation_summary.json)
-- [artifacts/reports/modeling_notebook_report.json](/home/what/praktika/practicum-sem4-praktika2/artifacts/reports/modeling_notebook_report.json)
+- [artifacts/reports/evaluation_summary.json](../artifacts/reports/evaluation_summary.json)
+- [artifacts/reports/modeling_notebook_report.json](../artifacts/reports/modeling_notebook_report.json)
 - MLflow experiment history
 - Airflow logs и статус DAG-задач retrain / ETL
 
