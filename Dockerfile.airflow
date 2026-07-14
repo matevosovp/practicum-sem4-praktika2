@@ -1,0 +1,7 @@
+FROM apache/airflow:2.10.2-python3.10
+
+COPY --chown=airflow:root requirements.txt requirements-airflow.txt /tmp/project-requirements/
+
+RUN pip install --no-cache-dir \
+    -r /tmp/project-requirements/requirements.txt \
+    -r /tmp/project-requirements/requirements-airflow.txt
