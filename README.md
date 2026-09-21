@@ -1,5 +1,7 @@
 # Ecommerce Recommender
 
+[Портфолио автора](https://github.com/matevosovp) · [Другие ML-проекты](https://github.com/matevosovp/matevosovp/blob/main/projects/README.md)
+
 [![Quality checks](https://github.com/matevosovp/practicum-sem4-praktika2/actions/workflows/quality.yml/badge.svg)](https://github.com/matevosovp/practicum-sem4-praktika2/actions/workflows/quality.yml)
 
 Репозиторий содержит законченный проект рекомендательной системы для e-commerce с акцентом на локальную воспроизводимость, `time-based` evaluation и memory-safe preprocessing.
@@ -25,16 +27,16 @@
 
 Используются три исходных источника:
 
-- `events.csv` — 2 756 101 событий
-- `category_tree.csv` — 1 669 строк иерархии категорий
-- `item_properties_part1.csv` + `item_properties_part2.csv` — 20 275 902 строк свойств товаров
+- `events.csv` - 2 756 101 событий
+- `category_tree.csv` - 1 669 строк иерархии категорий
+- `item_properties_part1.csv` + `item_properties_part2.csv` - 20 275 902 строк свойств товаров
 
 Ключевые особенности данных, влияющие на решение:
 
 - 1 407 580 уникальных пользователей
 - 235 061 товаров в логах событий
-- 96.67% событий — `view`
-- медианное число событий на пользователя — `1`
+- 96.67% событий - `view`
+- медианное число событий на пользователя - `1`
 - `transaction_after_cart_rate = 30.71%`
 - часть товаров из `events` отсутствует в `item_properties`
 - случайный split приводит к temporal leakage
@@ -74,7 +76,7 @@ EDA оформлен в [notebooks/01_eda.ipynb](notebooks/01_eda.ipynb) как 
 - `weighted_item2item`
 - `hybrid_history_item2item`
 
-### Почему итоговая модель — `history_baseline`
+### Почему итоговая модель - `history_baseline`
 
 На этом датасете большинство пользователей имеют очень короткую историю, поэтому лучшую offline-метрику даёт повторное ранжирование уже проявленного интереса. Более сложный item-to-item retrieval улучшает каталоговое покрытие, но уступает по `Recall@10`. Этот результат оставлен осознанно: итоговый сервис использует реально лучший offline-артефакт, а не номинально более сложную модель.
 
